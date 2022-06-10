@@ -49,6 +49,7 @@
     }
   ],
   "devDependencies": {
+    "@jest/types": "^28.1.1",
     "@size-limit/preset-small-lib": "^7.0.8",
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "husky": "^8.0.1",
