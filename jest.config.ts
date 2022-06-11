@@ -9,9 +9,16 @@ const config: Config.InitialOptions = {
   transform: {
     "^.+\\.(t|j)s$": "ts-jest"
   },
-  collectCoverageFrom: ["**/*.(t|j)s"],
+  collectCoverageFrom: ["src/**/*.(t|j)s", "!src/index.ts"],
   coverageDirectory: "../coverage",
+  coverageThreshold: {
+    global: {
+      lines: 90
+    }
+  },
   testEnvironment: "node",
+  testPathIgnorePatterns: ["<rootDir>/jest.config.ts", "<rootDir>/src/index.ts"],
+  modulePathIgnorePatterns: ["<rootDir>/dist/"],
   moduleNameMapper: hq.get("jest")
 };
 
