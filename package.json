@@ -1,11 +1,19 @@
 {
-  "version": "0.1.0",
   "author": "FranciscoKloganB",
   "name": "@klogan-software/utils",
   "private": true,
   "repository": "git://github.com/klogan-software/utils.git",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "type": "module",
+  "version": "0.1.0",
+  "source": "src/index.ts",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.mjs"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "unpkg": "./dist/index.umd.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "src"
@@ -15,26 +23,16 @@
     "npm": ">=8.3.1"
   },
   "scripts": {
-    "postinstall": "husky install && chmod ug+x .husky/*",
-    "prebuild": "rimraf dist",
-    "build": "tsdx build",
+    "build": "microbundle",
+    "dev": "microbundle watch",
     "eslint": "eslint --fix --ext \"**/*.{js,jsx,ts,tsx}\"",
     "format": "prettier --write \"{*,{src,test}/**/*}.+(css|json|js|jsx|ts|tsx)\"",
+    "postinstall": "husky install && chmod ug+x .husky/*",
+    "prebuild": "rimraf dist",
     "size": "size-limit",
     "test": "jest --watch",
     "test:headless": "jest"
   },
-  "module": "dist/utils.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/utils.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/utils.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
@@ -54,6 +52,7 @@
     "jest": "^28.1.1",
     "jest-when": "^3.5.1",
     "lint-staged": "^13.0.1",
+    "microbundle": "^0.15.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
