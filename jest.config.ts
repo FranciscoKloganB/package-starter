@@ -1,4 +1,5 @@
 import type { Config } from "@jest/types";
+import hq from "alias-hq";
 
 const config: Config.InitialOptions = {
   verbose: true,
@@ -11,10 +12,7 @@ const config: Config.InitialOptions = {
   collectCoverageFrom: ["**/*.(t|j)s"],
   coverageDirectory: "../coverage",
   testEnvironment: "node",
-  moduleNameMapper: {
-    "^@src$": "<rootDir>/src",
-    "^@src/(.*)": "<rootDir>/src/$1"
-  }
+  moduleNameMapper: hq.get("jest")
 };
 
 export default config;
