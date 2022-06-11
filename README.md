@@ -1,16 +1,17 @@
-<!-- @TODO:template: Add package name above and -->
+<!-- todo-template- Add package name above and -->
 
 # PACKAGE_NAME
 
-<!-- @TODO:template: Add long package description here -->
+<!-- todo-template- Add long package description here -->
 
 ## Bootstrap Checklist
 
+<!-- TODO: Warning do not proceed without finishing this checklist  -->
 If this is the first time the package is being setup by any team member
-ensure that all `@TODO:template:` annotations spread around the code have been
+ensure that all `todo-template-` annotations spread around the code have been
 resolved and deleted.
 
-<!-- @TODO:tempalte:delete_this_section -->
+<!-- @@todo_tempalte:delete_this_section -->
 
 - `readme.md`
   - [ ] Set project name as main heading

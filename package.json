@@ -1,7 +1,7 @@
 {
   "author": "FranciscoKloganB",
-  "name": "@klogan-software/@TODO:template:repository_name",
-  "repository": "git://github.com/klogan-software/@TODO:template:repository_name.git",
+  "name": "@klogan-software/todo-template-repository_name",
+  "repository": "git://github.com/klogan-software/todo-template-repository_name.git",
   "type": "module",
   "version": "0.1.0",
   "publishConfig": {
