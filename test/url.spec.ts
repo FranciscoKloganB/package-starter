@@ -1,4 +1,4 @@
-import { isHyperTransferURL, querify } from "../src";
+import { isHyperTransferURL, querify } from "@src/url";
 
 describe("isHyperTransferUrl", () => {
   const cases = [
