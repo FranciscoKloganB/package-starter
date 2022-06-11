@@ -34,7 +34,7 @@
     "prebuild": "rimraf dist",
     "size": "size-limit",
     "test": "jest --watch",
-    "test:ci": "jest --ci --coverage --maxWorkers=2",
+    "test:ci": "jest --ci --coverage --maxWorkers=50%",
     "deploy": "np"
   },
   "devDependencies": {
