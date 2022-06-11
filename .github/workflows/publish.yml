@@ -1,0 +1,44 @@
+name: Publish
+
+on:
+  # Type 'published' triggers if the release is published, no matter it's draft or not.
+  # Type 'created' triggers when a NON-draft release is created AND published.
+  push:
+    tags:
+      - "v*.*.*"
+  release:
+    types: [created]
+
+jobs:
+  build:
+    name: Build, Lint, Test, and Publish
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node: ["18.x"]
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "npm"
+          registry-url: https://npm.pkg.github.com/
+          scope: "@owner-or-organization"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Test
+        run: npm run test:ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Publish
+        run: npm publish
+        env:
+          # https://docs.github.com/en/enterprise-server@3.3/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

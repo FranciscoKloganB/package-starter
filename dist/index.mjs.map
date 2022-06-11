@@ -1,0 +1,1 @@
+{"version":3,"file":"index.mjs","sources":["../src/hello.ts"],"sourcesContent":["function getWorld() {\n  return \"world\";\n}\n\nexport { getWorld };\n"],"names":["getWorld"],"mappings":"AAAA,SAASA,IACP,MAAO"}

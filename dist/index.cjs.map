@@ -1,0 +1,1 @@
+{"version":3,"file":"index.cjs","sources":["../src/hello.ts"],"sourcesContent":["function getWorld() {\n  return \"world\";\n}\n\nexport { getWorld };\n"],"names":[],"mappings":"iBAAA,WACE,MAAO"}

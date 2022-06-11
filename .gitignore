@@ -29,7 +29,6 @@ pnpm-debug.log*
 
 # NPM
 node_modules
-dist
 dist-ssr
 
 # Operating System
