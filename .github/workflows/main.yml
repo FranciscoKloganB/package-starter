@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: ["14.x", "16.x", "18.x"]
+        node: ["16.x", "18.x"]
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
@@ -27,7 +27,7 @@ jobs:
         run: npm run eslint
 
       - name: Test
-        run: npm run test --ci --coverage --maxWorkers=2
+        run: npm run test:ci
 
       - name: Build
         run: npm run build
