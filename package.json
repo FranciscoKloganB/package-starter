@@ -1,10 +1,13 @@
 {
   "author": "FranciscoKloganB",
   "name": "@klogan-software/utils",
-  "private": true,
   "repository": "git://github.com/klogan-software/utils.git",
   "type": "module",
   "version": "0.1.0",
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://npm.pkg.github.com"
+  },
   "source": "src/index.ts",
   "exports": {
     "require": "./dist/index.cjs",
@@ -31,7 +34,8 @@
     "prebuild": "rimraf dist",
     "size": "size-limit",
     "test": "jest --watch",
-    "test:headless": "jest"
+    "test:headless": "jest",
+    "deploy": "np"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
@@ -53,6 +57,8 @@
     "jest-when": "^3.5.1",
     "lint-staged": "^13.0.1",
     "microbundle": "^0.15.0",
+    "np": "^7.6.1",
+    "npm-cli-login": "^1.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
