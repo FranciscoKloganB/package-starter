@@ -1,7 +1,32 @@
-<!-- TODO: Add package name above and -->
+<!-- @TODO:template: Add package name above and -->
+
 # PACKAGE_NAME
 
-<!-- TODO: Add long package description here -->
+<!-- @TODO:template: Add long package description here -->
+
+## Bootstrap Checklist
+
+If this is the first time the package is being setup by any team member
+ensure that all `@TODO:template:` annotations spread around the code have been
+resolved and deleted.
+
+<!-- @TODO:tempalte:delete_this_section -->
+
+- `readme.md`
+  - [ ] Set project name as main heading
+  - [ ] Write a somewhat long description of the goals of the package
+  - [ ] If the package is simple add some basic usage on the `markdown` itself
+  - [ ] Otherwise setup a custom documentation page using any tool of your choice
+- `package.json`
+  - [ ] set project name
+  - [ ] set project repository
+  - [ ] project name and repository match each other
+- `miscellaneous`:
+  - [ ] Add more project `devDependencies`, e.g.: `react` and `react-dom`
+  - [ ] Add `peerDependencies` to ensure package consumers have required dependencies
+  - [ ] Add additional `prettier` or `eslint` plugins as required.
+  - [ ] Setup other testing and DX tools, e.g.: `cypress`, `react-testing-lib`, `storybook`
+
 ## Description
 
 Lorem ipsum...
