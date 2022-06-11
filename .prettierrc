@@ -1,0 +1,23 @@
+{
+  "printWidth": 88,
+  "singleQuote": false,
+  "trailingComma": "none",
+  "importOrder": [
+    "react",
+    "react-dom",
+    "<THIRD_PARTY_MODULES>",
+    "^pages/(.*)$",
+    "^layouts/(.*)$",
+    "^components/(.*)$",
+    "^hooks/(.*)$",
+    "^clients/(.*)$",
+    "^utils/(.*)$",
+    "^locales/(.*)$",
+    "^public/(.*)$",
+    "^styles/(.*)$",
+    "^[./]",
+    "^[../]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}

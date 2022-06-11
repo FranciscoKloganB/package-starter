@@ -1,0 +1,8 @@
+#!/bin/sh
+
+. "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/common.sh"
+
+npm run format
+npm run test:headless -- --maxWorkers=50%
+npm run build

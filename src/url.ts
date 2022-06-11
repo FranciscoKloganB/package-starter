@@ -7,13 +7,11 @@ function isHyperTransferURL(path: string) {
     return false;
   }
 
-  return url.protocol === 'http:' || url.protocol === 'https:';
+  return url.protocol === "http:" || url.protocol === "https:";
 }
 
 function querify(params: Record<string, any>) {
-  Object.keys(params).forEach(
-    (key) => params[key] === undefined && delete params[key]
-  );
+  Object.keys(params).forEach((key) => params[key] === undefined && delete params[key]);
 
   return Object.keys(params)
     .map((key) => {
@@ -27,7 +25,7 @@ function querify(params: Record<string, any>) {
 
       return `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`;
     })
-    .join('&');
+    .join("&");
 }
 
 export { isHyperTransferURL, querify };

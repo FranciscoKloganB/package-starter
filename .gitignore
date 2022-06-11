@@ -1,4 +1,43 @@
+# Editor directories and files
+.idea/
+.vscode/
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 *.log
-.DS_Store
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.suo
+
+# Local files
+*.local
+LOCAL_NOTES.md
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# NPM
 node_modules
 dist
+dist-ssr
+
+# Operating System
+.DS_Store
+
+# Tests
+/tests/**/videos/
+/tests/**/screenshots/
+/instrumented
+/coverage
+.nyc_output

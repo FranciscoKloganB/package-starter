@@ -11,31 +11,18 @@
     "src"
   ],
   "engines": {
-    "node": ">=16"
+    "node": ">=16.14",
+    "npm": ">=8.3.1"
   },
   "scripts": {
-    "start": "tsdx watch",
+    "postinstall": "husky install && chmod ug+x .husky/*",
     "prebuild": "rimraf dist",
     "build": "tsdx build",
-    "test": "tsdx test",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
+    "eslint": "eslint --fix --ext \"**/*.{js,jsx,ts,tsx}\"",
+    "format": "prettier --write \"{*,{src,test}/**/*}.+(css|json|js|jsx|ts|tsx)\"",
     "size": "size-limit",
-    "analyze": "size-limit --why",
-    "format": "prettier --write ."
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "importOrderSeparation": true,
-    "importOrderSortSpecifiers": true
+    "test": "jest --watch",
+    "test:headless": "jest"
   },
   "module": "dist/utils.esm.js",
   "size-limit": [
@@ -49,13 +36,29 @@
     }
   ],
   "devDependencies": {
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
     "@jest/types": "^28.1.1",
     "@size-limit/preset-small-lib": "^7.0.8",
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
+    "@types/jest": "^28.1.1",
+    "@types/node": "^17.0.42",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-no-only-tests": "^2.6.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "husky": "^8.0.1",
+    "jest": "^28.1.1",
+    "jest-when": "^3.5.1",
+    "lint-staged": "^13.0.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "size-limit": "^7.0.8",
-    "tsdx": "^0.14.1",
+    "start-server-and-test": "^1.14.0",
+    "ts-jest": "^28.0.4",
     "tslib": "^2.4.0",
     "typescript": "^4.7.3"
   }
