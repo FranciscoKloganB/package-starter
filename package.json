@@ -27,20 +27,22 @@
     "npm": ">=8.12.1"
   },
   "scripts": {
-    "build": "microbundle",
+    "auth:npm": "npm-cli-login -u $NPM_USER -p $NPM_PASS -e $NPM_EMAIL -r $NPM_REGISTRY -s $NPM_SCOPE",
+    "postauth:npm": "cat ~/.npmrc",
+    "cop": "run-s format eslint test:ci",
+    "prerelease": "git checkout main && git pull",
+    "release": "run-s cop \"rimraf dist\" microbundle",
+    "postrelease": "npm publish",
+    "prepublishOnly": "standard-version && git push --follow-tags --no-verify",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable",
+    "postinstall": "husky install && chmod ug+x .husky/*",
     "dev": "microbundle watch",
     "eslint": "eslint --fix --ext \"**/*.{js,jsx,ts,tsx}\"",
     "format": "prettier --write \"{*,{src,test}/**/*}.+(css|json|js|jsx|ts|tsx)\"",
-    "postinstall": "husky install && chmod ug+x .husky/*",
-    "prebuild": "rimraf dist",
     "size": "size-limit",
     "test": "jest --watch",
-    "test:ci": "jest --ci --coverage --maxWorkers=50%",
-    "prerelease": "git checkout main && git pull && npm-run-all format eslint 'test:ci'",
-    "release": "npm run build && standard-version",
-    "postrelease": "git push --follow-tags --no-verify && npm publish",
-    "npmauth": "npm-cli-login -u $NPM_USER -p $NPM_PASS -e $NPM_EMAIL -r $NPM_REGISTRY -s $NPM_SCOPE",
-    "postnpmauth": "cat ~/.npmrc"
+    "test:ci": "jest --ci --coverage --maxWorkers=50%"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
@@ -64,6 +66,7 @@
     "microbundle": "^0.15.0",
     "npm-cli-login": "^1.0.0",
     "npm-run-all": "^4.1.5",
+    "pinst": "^3.0.0",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "size-limit": "^7.0.8",
@@ -72,6 +75,5 @@
     "ts-jest": "^28.0.4",
     "tslib": "^2.4.0",
     "typescript": "^4.7.3"
-  },
-  "peerDependencies": {}
+  }
 }

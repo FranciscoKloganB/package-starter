@@ -30,6 +30,7 @@ pnpm-debug.log*
 # NPM
 node_modules
 dist-ssr
+dist
 
 # Operating System
 .DS_Store
