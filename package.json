@@ -11,14 +11,15 @@
     "registry": "https://npm.pkg.github.com/owner-or-organization"
   },
   "source": "src/index.ts",
-  "exports": {
-    "require": "./dist/index.cjs",
-    "default": "./dist/index.modern.mjs"
-  },
+  "types": "./dist/index.d.ts",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.module.js",
   "unpkg": "./dist/index.umd.js",
-  "types": "dist/index.d.ts",
+  "exports": {
+    "default": "./dist/index.modern.mjs",
+    "import": "./dist/index.modern.mjs",
+    "require": "./dist/index.cjs"
+  },
   "files": [
     "dist"
   ],

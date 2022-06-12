@@ -30,6 +30,12 @@ resolved and deleted.
   - [ ] If the package is simple add some basic usage on the `markdown` itself
   - [ ] Otherwise setup a custom documentation page using any tool of your choice
 
+- **testpkg.sh**
+
+  - [ ] Update contents of `testpkg.sh`
+  - [ ] Update the imports on `app/index.ts` test file (tiny app to manually verify
+        package before running `npm run release`)
+
 - **miscellaneous**:
   - [ ] Add more project `devDependencies`, e.g.: `react` and `react-dom`
   - [ ] Add `peerDependencies` to ensure package consumers have required dependencies
@@ -136,6 +142,35 @@ postcommand scripts are executed. Below is the order in which they resolve!
 8. prepare # executes default prepare script (gzip of package.json.files + package.json itself)
 9. postpack # reenables postinstall script
 10. publish # pushes gzip to remote registry.
+```
+
+#### How can consumers of our package use our utilities?
+
+We export our configurations in multiple formats on `package.json`. See short
+example below:
+
+```jsonc
+{
+  // only used by microbundle:
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  // CJS:
+  "main": "./dist/index.cjs",
+  // Bundler ESM:
+  "module": "./dist/index.module.js",
+  // unpkg/cdn UMD:
+  "unpkg": "./dist/index.umd.js",
+  "exports": {
+    // Node CJS:
+    "require": "./dist/index.cjs",
+    // Node ESM import X from Y
+    "default": "./dist/index.modern.mjs",
+    // Node ESM import { a } from Y
+    "import": "./dist/index.modern.mjs"
+  },
+  // We only publish our `dist/` folder, `README.md`, and `package.json` on npm
+  "files": ["dist"]
+}
 ```
 
 ## Continuous Integration

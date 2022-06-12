@@ -18,7 +18,7 @@ const config: Config.InitialOptions = {
   },
   testEnvironment: "node",
   testPathIgnorePatterns: ["<rootDir>/jest.config.ts", "<rootDir>/src/index.ts"],
-  modulePathIgnorePatterns: ["<rootDir>/dist/"],
+  modulePathIgnorePatterns: ["<rootDir>/app/", "<rootDir>/dist/"],
   moduleNameMapper: hq.get("jest")
 };
 
