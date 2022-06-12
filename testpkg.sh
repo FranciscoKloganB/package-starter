@@ -8,9 +8,10 @@ npm pack --pack-destination $LOCAL_NPM_REGISTRY
 
 cd app
 
-npm install $LOCAL_NPM_REGISTRY/owner-or-organization-repository-name-*.tgz
+npm install $LOCAL_NPM_REGISTRY/owner-or-organization-repository-name*.tgz
+
+code ./index.ts
+
+npm run test
 
 cd ..
-
-code ./app/index.ts
-node ./app/index.ts

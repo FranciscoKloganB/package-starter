@@ -1,10 +1,15 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-import { getWorld } from "@owner-or-organization/repository_name";
+// Since esModuleInterop the two statements below are equivalent;
+// const helloCJS = require("@owner-or-organization/repository-name");
+import * as helloCJS from "@owner-or-organization/repository-name";
+// Spread MJS import
+import { getWorld } from "@owner-or-organization/repository-name";
 
-const utils = require("@owner-or-organization/repository_name");
+// To test default MJS export (must be provided by your pacakge) uncomment below
+// import hello from "@owner-or-organization/repository-name"
+// console.log("MJS Default Import:", hello, hello.getWorld());
 
-console.log("CJS Require:", hello.getWorld("2021"));
-console.log("MJS Import:", getWorld("2022"));
+console.log("MJS Import:", getWorld());
+console.log("CJS Require:", helloCJS, helloCJS.getWorld());
 
 /**
  * This file serves only to test your publishable NPM package various import

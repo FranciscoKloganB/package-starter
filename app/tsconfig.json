@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es6",
+    "allowJs": true,
+    "baseUrl": ".",
+    "checkJs": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    "skipLibCheck": true,
+    "strict": false
+  },
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "esm": true
+  }
+}

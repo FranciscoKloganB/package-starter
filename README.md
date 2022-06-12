@@ -127,6 +127,13 @@ npm run release -- --release-as minor
 npm run release -- --release-as major
 ```
 
+#### What should I do before releasing?
+
+You should run a healthy amount of automated tests and ideally, test your
+library on a dummy-app, if it is somewhat complex; If it is a simple utility
+library you can tweak `./app/index.ts` and use `testpkg.sh` to print some
+`console.log` statements;
+
 #### What scripts run when releasing?
 
 When you run `npm run release -- args` a handful of precommand, command, and
@@ -152,22 +159,20 @@ example below:
 ```jsonc
 {
   // only used by microbundle:
-  "source": "./src/index.ts",
+  "source": "src/index.ts",
   "types": "./dist/index.d.ts",
-  // CJS:
-  "main": "./dist/index.cjs",
-  // Bundler ESM:
-  "module": "./dist/index.module.js",
-  // unpkg/cdn UMD:
-  "unpkg": "./dist/index.umd.js",
+  // CommonJS:
+  "main": "./dist/index.js",
   "exports": {
-    // Node CJS:
-    "require": "./dist/index.cjs",
-    // Node ESM import X from Y
-    "default": "./dist/index.modern.mjs",
-    // Node ESM import { a } from Y
-    "import": "./dist/index.modern.mjs"
+    // Node CommonJS:
+    "require": "./dist/index.js",
+    // Node EcmaSscriptModule (ModuleJS): import X from Y || import { a } from Y
+    "default": "./dist/index.modern.mjs"
   },
+  // Bundler EcmaSscriptModule (ModuleJS):
+  "module": "./dist/index.module.js",
+  // Unpkg/CDN UMD:
+  "unpkg": "./dist/index.umd.js",
   // We only publish our `dist/` folder, `README.md`, and `package.json` on npm
   "files": ["dist"]
 }

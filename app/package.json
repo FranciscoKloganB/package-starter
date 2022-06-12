@@ -1,4 +1,12 @@
 {
   "name": "app",
-  "dependencies": {}
+  "type": "module",
+  "scripts": {
+    "test": "ts-node index.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ts-node": ">=10.8.1",
+    "typescript": ">=4.7.2"
+  }
 }
