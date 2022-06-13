@@ -1,10 +1,6 @@
 [
   {
-    "path": "dist/index.cjs",
-    "limit": "10 KB"
-  },
-  {
-    "path": "dist/index.modern.js",
+    "path": "dist/index.js",
     "limit": "10 KB"
   },
   {
@@ -12,7 +8,7 @@
     "limit": "10 KB"
   },
   {
-    "path": "dist/index.mjs",
+    "path": "dist/index.modern.mjs",
     "limit": "10 KB"
   }
 ]

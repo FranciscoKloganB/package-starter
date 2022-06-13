@@ -8,11 +8,15 @@ test/
 .env.*
 .envrc
 
+.commitlintrc.json
+.eslintignore
+.eslintrc.json
 .prettierignore
 .prettierrc
 .size-limit.json
 mangle.json
 tsconfig.json
+testpkg.sh
 jest.config.ts
 
 **/*.spec.ts
