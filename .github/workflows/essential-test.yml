@@ -8,7 +8,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: ["18.x"]
+        node: ["16.14"]
         os: [ubuntu-latest]
 
     steps:
@@ -16,8 +16,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          # https://github.com/actions/cache/issues/698
-          # cache: "npm"
+          cache: "npm"
 
       - name: Install Dependencies
         run: npm install

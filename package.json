@@ -10,7 +10,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/owner-or-organization"
   },
-  "source": "src/index.ts",
+  "source": "./index.ts",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
   "exports": {
@@ -24,7 +24,7 @@
   ],
   "engines": {
     "node": ">=16.14",
-    "npm": ">=8.12.1"
+    "npm": ">=8"
   },
   "scripts": {
     "auth:npm": "npm-cli-login -u $NPM_USER -p $NPM_PASS -e $NPM_EMAIL -r $NPM_REGISTRY -s $NPM_SCOPE",

@@ -1,28 +1,28 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "target": "ESNext",
-    "lib": ["DOM", "ESNext"],
-    "importHelpers": true,
     "declaration": true,
-    "sourceMap": true,
-    "rootDir": ".", // match output dir to input dir. e.g. dist/index instead of dist/src/index
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true, // noUnused* overlap with @typescript-eslint/no-unused-vars, can disable if duplicative
-    "noUnusedParameters": true,
-    "moduleResolution": "node",
-    "jsx": "react",
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "jsx": "react",
+    "lib": ["DOM", "ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "node",
     "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "paths": {
       "@src": ["./src"],
       "@src/*": ["./src/*"]
-    }
+    },
+    "rootDir": ".",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ESNext"
   },
   "exclude": ["app", "node_modules", "test"],
-  "include": ["src", "types"]
+  "include": ["./index.ts"]
 }
