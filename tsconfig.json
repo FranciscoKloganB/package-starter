@@ -1,27 +1,27 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "importHelpers": true,
-    "jsx": "react",
-    "lib": ["DOM", "ESNext"],
     "module": "ESNext",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
+    "target": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": ".",
+    "strict": true,
     "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
     "paths": {
       "@src": ["./src"],
-      "@src/*": ["./src/*"]
-    },
-    "rootDir": ".",
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "strict": true,
-    "target": "ESNext"
+      "@/*": ["./src/*"]
+    }
   },
   "exclude": ["app", "node_modules", "test"],
   "include": ["./index.ts"]

@@ -27,7 +27,7 @@ jobs:
           node-version: "16.14"
           cache: "npm"
           registry-url: https://npm.pkg.github.com/
-          scope: "@franciscokloganb"
+          scope: "@owner-or-organization"
 
       - name: Install dependencies
         run: npm install

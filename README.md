@@ -44,11 +44,13 @@ resolved and deleted.
 
 ## Description
 
-A tiny collection of utility functions is often required in frontend projects.
+Packages can do many things for you. To name a few, these range from utility functions
+to complete frameworks, data structure management solutions or communication protocols.
+This example template provides a package with a single function named
+`toHumanReadableString`, which formats a data-like value to consistent string output.
 
-Utilities include date formatters, transforming objects to query strings,
-and verifying that a given string is a URL. As well as a `callAll` function, which
-invokes an arbitrary number of functions each with an arbitrary number of args;
+This could be useful to ensure our frontend consumers render data to the screen in
+similar fashion regardless of the original data value source.
 
 ## Configuration
 
@@ -64,7 +66,7 @@ with `npm run analyze`.
 
 ### Jest
 
-Jest tests are set up to run with `npm test` or `npm test: headless`. If you
+Jest tests are set up to run with `npm test` or `npm test:headless`. If you
 are developing a package for `React.js` or `Next.js` further packages need to be
 added.
 
@@ -90,9 +92,10 @@ them to have.
 
 #### TLDR
 
-- `dependencies` forces consumers to have your dependencies
-- `devDependencies` do not affect consumers
-- `peerDependencies` asks consumers to install packages you need to operate
+- `dependencies` indirectly forces consumers to have your dependencies.
+- `devDependencies` do not affect consumers.
+- `peerDependencies` ensures consumers install the correct version of a packages you
+need to operate, but do not necessarely depend on.
 
 ### Publishing
 
@@ -159,7 +162,9 @@ example below:
 ```jsonc
 {
   // only used by microbundle:
-  "source": "src/index.ts",
+  // define the entry point for your package
+  "source": "./index.ts",
+  // tells microbundle where to place the package's type definitions after TypeScript compilation
   "types": "./dist/index.d.ts",
   // CommonJS:
   "main": "./dist/index.js",
@@ -169,7 +174,7 @@ example below:
     // Node EcmaSscriptModule (ModuleJS): import X from Y || import { a } from Y
     "default": "./dist/index.modern.mjs"
   },
-  // Bundler EcmaSscriptModule (ModuleJS):
+  // Bundler EcmaSscriptModule (ModuleJS, ModernJS):
   "module": "./dist/index.module.js",
   // Unpkg/CDN UMD:
   "unpkg": "./dist/index.umd.js",
