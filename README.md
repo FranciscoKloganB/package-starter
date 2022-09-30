@@ -86,9 +86,9 @@ projects (depending on their usage of `--save-dev`). When you add a package to
 `devDependencies` these are not propagated to consumers. Ideally, if you want
 to ensure that consumers have a package installed on their project, that is
 needed for your project to work, without risking conflicts with them, you should
-declare such packages as `peerDependencies`. This will raise a warning on their
-side, if they install your package and are missing the packages you would like
-them to have.
+declare such packages as `peerDependencies` which are installed in case the
+consumer does not have them yet. Otherwise `peerDependencies` ensures version
+the consumer has, is compatible with what is requested.
 
 #### TLDR
 
