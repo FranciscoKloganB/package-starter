@@ -1,6 +1,6 @@
 {
-  "*.{js,jsx,ts,tsx}": [
-    "eslint --fix --ext \"**/*.{js,jsx,ts,tsx}\"",
-    "prettier --write \"{*,{src,test}/**/*}.+(css|json|js|jsx|ts|tsx)\""
+  "*.{js,ts}": [
+    "prettier --write \"{*,{src,test}/**/*}.+(css|json|cjs|js|jsx|mjs|ts|tsx)\"",
+    "eslint --fix --ext \"**/*.{js,jsx,ts,tsx}\""
   ]
 }

@@ -1,8 +1,12 @@
-**/.gitignore
-**/coverage/
-.github/
-.husky/
+.env.local
+.env.template
+.gitignore
 .vscode/
+build/
+bun.lockb
+package-lock.json
 dist/
-locales/
 node_modules/
+package.json
+README.md
+tsconfig.json

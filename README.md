@@ -1,4 +1,4 @@
-# repository-name
+# Template Instructions
 
 <!-- TODO: Warning do not proceed without finishing this checklist  -->
 <!-- TODO: Read some https://blog.logrocket.com/the-complete-guide-to-publishing-a-react-package-to-npm/ -->
@@ -13,22 +13,29 @@ resolved and deleted.
   - [ ] Set project `author` to `owner-or-organization`
   - [ ] Set project `name` to `@owner-or-organization/repository-name`
   - [ ] Set project `repository.url` to `git://github.com/owner-or-organization/repository-name.git`
-  - [ ] Set project `publishConfig.registry` to `https://npm.pkg.github.com/owner-or-organization`
+  - [ ] Set project `publishConfig.registry`
+    - Publishing to private GitHub registry? Set `https://npm.pkg.github.com/owner-or-organization`
+    - Publishing to public NPM registry? Set `https://registry.npmjs.org`
   - [ ] Set project `publishConfig.access` to according to your needs.
         See [this](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#publishconfig),
         and [this](https://docs.npmjs.com/cli/v8/using-npm/config#access)
+  - [ ] Set your preferred package.json "type", default is `module`. Which we recommend.
 
 - **.github/workflows/publish.yml**
 
   - [ ] Set `jobs.steps.*.with.scope` to `@owner-or-organization`
+  - [ ] Set `jobs.steps.Publish.env.NODE_AUTH_TOKEN`
+    - Using GitHub registry? Set `NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}`
+    - Using NPM registry? Set `NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}`
+      - You will need to create an Access Token on NPM and set it the Key Value on your repository GitHub Secrets
   - [ ] Disable `publish.yml` workflow on GitHub if you prefer releasing through the [CLI](#publishing)
 
 - **readme.md**
 
   - [ ] Set project `repository-name` as main heading
   - [ ] Write a somewhat long description of the goals of the package
-  - [ ] If the package is simple add some basic usage on the `markdown` itself
-  - [ ] Otherwise setup a custom documentation page using any tool of your choice
+  - [ ] Add some basic usage on information to the `README.md` file that will replace this one
+  - [ ] Add link to documentation page if package is too complex to doc on a `README.md` file
 
 - **testpkg.sh**
 
@@ -40,17 +47,22 @@ resolved and deleted.
   - [ ] Add more project `devDependencies`, e.g.: `react` and `react-dom`
   - [ ] Add `peerDependencies` to ensure package consumers have required dependencies
   - [ ] Add additional `prettier` or `eslint` plugins as required.
-  - [ ] Setup other testing and DX tools, e.g.: `cypress`, `react-testing-lib`, `storybook`
+  - [ ] Setup other testing and DX tools, e.g.: `cypress`, `playwright`, `react-testing-lib`, `storybook`
+  - [ ] Update `.vscode/settings.json`, some libs you might be using may require or benefit additional configs (e.g.: `vue` or `i18n-ally`)
+  - [ ] Update `.eslintrc.cjs` with rules specific to your tooks, e.g.: `react-hooks` or others.
+  - [ ] Update `.lintstagedrc.json` to scan additional file types.
+  - [ ] Update `tsconfig.json` at the root of the project with rules that make sense for your package.
+  - [ ] Update `prettierrc.cjs` import order rules to add additional path alias overtime.
 
-## Description
+## Bumping dependencies and updating package.json
 
-Packages can do many things for you. To name a few, these range from utility functions
-to complete frameworks, data structure management solutions or communication protocols.
-This example template provides a package with a single function named
-`toHumanReadableString`, which formats a data-like value to consistent string output.
+To update the project's dependencies and `package.json` use the script below. Please
+review the package changes. If any major version upgrade was made, check on the package
+repository if there were breaking changes and how to deal with them.
 
-This could be useful to ensure our frontend consumers render data to the screen in
-similar fashion regardless of the original data value source.
+```bash
+npm run up:install
+```
 
 ## Configuration
 
@@ -64,20 +76,7 @@ plugins. Adjust `package.json` accordingly.
 the real cost of your library with `npm run size` and visualize the bundle
 with `npm run analyze`.
 
-### Jest
-
-Jest tests are set up to run with `npm test` or `npm test:headless`. If you
-are developing a package for `React.js` or `Next.js` further packages need to be
-added.
-
-### Path Aliases
-
-We use [alias-hq](https://github.com/davestewart/alias-hq) to simplify path
-aliasing during development; Configure paths once in `tsconfig.json` and have
-remaining tools like `jest` integrate automatically with the available
-`tsconfig` by invoking a simple function provided by `alias-HQ;
-
-### Dependencies
+### Dependency Management
 
 Take care when adding new dependencies to the project. When you add a new
 production dependency (`dependencies` in `package.json`), these will also
@@ -90,12 +89,25 @@ declare such packages as `peerDependencies` which are installed in case the
 consumer does not have them yet. Otherwise `peerDependencies` ensures version
 the consumer has, is compatible with what is requested.
 
-#### TLDR
+#### Dependency Management Short Summary
 
 - `dependencies` indirectly forces consumers to have your dependencies.
 - `devDependencies` do not affect consumers.
 - `peerDependencies` ensures consumers install the correct version of a packages you
 need to operate, but do not necessarely depend on.
+
+### Jest
+
+Jest tests are set up to run with `npm test` or `npm test:headless`. If you
+are developing a package for `React.js` or `Next.js` further packages need to be
+added.
+
+### Path Aliases
+
+We use TypeScript `path` alias and `ts-jest` to ensure the same aliases are available
+during test runs. For bundling convinience, our tests are located on an isolated folder
+called `test`. You should create your `unit` and `integration` tests here, but you
+are free to modify the configuration to your preference.
 
 ### Publishing
 
@@ -133,8 +145,8 @@ npm run release -- --release-as major
 #### What should I do before releasing?
 
 You should run a healthy amount of automated tests and ideally, test your
-library on a dummy-app, if it is somewhat complex; If it is a simple utility
-library you can tweak `./app/index.ts` and use `testpkg.sh` to print some
+library on a dummy-app, if it is somewhat complex to do so automatically; If it is a
+simple utility library you can tweak `./app/index.ts` and use `testpkg.sh` to print some
 `console.log` statements;
 
 #### What scripts run when releasing?
@@ -156,32 +168,9 @@ postcommand scripts are executed. Below is the order in which they resolve!
 
 #### How can consumers of our package use our utilities?
 
-We export our configurations in multiple formats on `package.json`. See short
-example below:
-
-```jsonc
-{
-  // only used by microbundle:
-  // define the entry point for your package
-  "source": "./index.ts",
-  // tells microbundle where to place the package's type definitions after TypeScript compilation
-  "types": "./dist/index.d.ts",
-  // CommonJS:
-  "main": "./dist/index.js",
-  "exports": {
-    // Node CommonJS:
-    "require": "./dist/index.js",
-    // Node EcmaSscriptModule (ModuleJS): import X from Y || import { a } from Y
-    "default": "./dist/index.modern.mjs"
-  },
-  // Bundler EcmaSscriptModule (ModuleJS, ModernJS):
-  "module": "./dist/index.module.js",
-  // Unpkg/CDN UMD:
-  "unpkg": "./dist/index.umd.js",
-  // We only publish our `dist/` folder, `README.md`, and `package.json` on npm
-  "files": ["dist"]
-}
-```
+We export our configurations in multiple formats on `package.json`. We use `microbundle`
+to make bundling a breeze. For a more refined configuration, please refer to their
+documentation at [@microbundle](https://github.com/developit/microbundle)
 
 ## Continuous Integration
 
@@ -200,7 +189,7 @@ Three actions are added by default:
 
 ## Module Formats
 
-CJS, ESModules, and UMD module formats are supported. The appropriate paths are
+CJS, MJS, ESModules, and UMD module formats are supported. The appropriate paths are
 configured in `package.json`. Read more at [microbundle](https://github.com/developit/microbundle)
 
 ## Named Exports
@@ -218,14 +207,3 @@ we export named modules rather than default modules.
 - [Authenticating](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages)
 - [Publishing](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#publishing-a-package)
 - [Installing](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package)
-
-### Bumping dependencies and updating package.json
-
-To update the project's dependencies and `package.json` at the same time
-run the commands below.
-
-```bash
-npm install -g npm-check-updates
-ncu -u
-npm install
-```
