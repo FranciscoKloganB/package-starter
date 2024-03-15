@@ -52,7 +52,7 @@
     "up:install": "taze major --install && npx taze -w && npm i"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.4.3",
+    "@commitlint/cli": "^19.2.0",
     "@commitlint/config-conventional": "^18.4.3",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@jest/types": "^29.6.3",
