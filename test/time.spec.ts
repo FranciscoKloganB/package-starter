@@ -29,12 +29,9 @@ describe('toHumanReadableString', () => {
     { date: '2021-05-30T17:29:24.603Z', expected: usualDate },
   ];
 
-  it.each(validCases)(
-    'toHumanReadableString($date) should be $expected',
-    ({ date, expected }) => {
-      expect(toHumanReadableString(date)).toEqual(expected);
-    },
-  );
+  it.each(validCases)('toHumanReadableString($date) should be $expected', ({ date, expected }) => {
+    expect(toHumanReadableString(date)).toEqual(expected);
+  });
 
   const expectedErrorMessage = (s: string) => `'${s}' is not a valid date`;
   const invalidCases = [
