@@ -12,7 +12,7 @@ export default defineConfig({
       provider: 'v8',
       clean: true,
       reporter: ['text', 'html'],
-      include: ['src/**/*.(t|j)s'],
+      include: ['src/**/*'],
       exclude: [...(configDefaults.coverage.exclude ?? []), 'node_modules/'],
       thresholds: {
         perFile: true,
