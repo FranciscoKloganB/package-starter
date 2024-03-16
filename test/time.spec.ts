@@ -1,12 +1,14 @@
+import { MockInstance } from 'vitest';
+
 import { toHumanReadableString } from '@src';
 
 describe('toHumanReadableString', () => {
   beforeAll(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterAll(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('converts unix timestamp to human readable date', () => {
@@ -27,7 +29,7 @@ describe('toHumanReadableString', () => {
     { date: '2021-05-30T17:29:24.603Z', expected: usualDate },
   ];
 
-  test.each(validCases)(
+  it.each(validCases)(
     'toHumanReadableString($date) should be $expected',
     ({ date, expected }) => {
       expect(toHumanReadableString(date)).toEqual(expected);
@@ -42,7 +44,7 @@ describe('toHumanReadableString', () => {
     { date: null, error: TypeError },
     { date: undefined as any, error: TypeError },
   ];
-  test.each(invalidCases)(
+  it.each(invalidCases)(
     'toHumanReadableString($date) should be raise an error of $error',
     ({ date, error }) => {
       expect(() => toHumanReadableString(date)).toThrow(error);
@@ -58,28 +60,25 @@ describe('toHumanReadableString configuration object', () => {
     year: 'numeric',
   };
 
-  let toLocaleDateStringSpy: jest.SpyInstance<
-    string,
-    [locales?: Intl.LocalesArgument, options?: Intl.DateTimeFormatOptions]
-  >;
+  let toLocaleDateStringSpy: MockInstance;
 
   beforeEach(() => {
-    toLocaleDateStringSpy = jest
+    toLocaleDateStringSpy = vi
       .spyOn(Date.prototype, 'toLocaleDateString')
       .mockReturnValue('January 1, 2021');
   });
 
   afterEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
-  test('defaults for day, month and year are numeric, long and numeric', () => {
+  it('defaults for day, month and year are numeric, long and numeric', () => {
     toHumanReadableString(fixedDated);
 
     expect(toLocaleDateStringSpy).toHaveBeenCalledWith('en-US', defaultOptions);
   });
 
-  test('can configure day format', () => {
+  it('can configure day format', () => {
     const day = '2-digit';
 
     toHumanReadableString(fixedDated, { day });
@@ -90,7 +89,7 @@ describe('toHumanReadableString configuration object', () => {
     });
   });
 
-  test('can configure month format', () => {
+  it('can configure month format', () => {
     const month = 'short';
 
     toHumanReadableString(fixedDated, { month });
@@ -101,7 +100,7 @@ describe('toHumanReadableString configuration object', () => {
     });
   });
 
-  test('can configure year format', () => {
+  it('can configure year format', () => {
     const year = '2-digit';
 
     toHumanReadableString(fixedDated, { year });
@@ -112,7 +111,7 @@ describe('toHumanReadableString configuration object', () => {
     });
   });
 
-  test('can pass aditional configurations', () => {
+  it('can pass aditional configurations', () => {
     const localeMatcher = 'best fit';
 
     toHumanReadableString(fixedDated, { localeMatcher });
