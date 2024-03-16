@@ -11,6 +11,7 @@
     "module": "ESNext",
     "moduleDetection": "force",
     "moduleResolution": "Node",
+    "types": ["vitest/globals"],
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
@@ -30,5 +31,5 @@
     }
   },
   "exclude": ["app", "node_modules", "test"],
-  "include": ["./index.ts"]
+  "include": ["./index.ts", "vitest.config.ts", "vitest.setup.ts"]
 }

@@ -19,21 +19,30 @@ jobs:
     needs: [essential]
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 20 ]
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
         with:
-          node-version: "16.14"
-          cache: "npm"
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
           registry-url: https://npm.pkg.github.com/
           scope: "@owner-or-organization"
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Build Distribution
-        run: npm run build
+        run: pnpm build
 
       - name: Publish
         run: npm publish
