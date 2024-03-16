@@ -51,7 +51,7 @@
     "test": "vitest watch",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "test:ci": "vitest run --coverage --maxWorkers=50%"
+    "test:ci": "vitest run --coverage --maxWorkers=50"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.2.0",

@@ -5,7 +5,6 @@ export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
     globals: true,
-    setupFiles: './vitest.setup.ts',
     testTimeout: 20000,
     coverage: {
       enabled: false,
