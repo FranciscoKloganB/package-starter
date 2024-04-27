@@ -23,7 +23,6 @@
       "*.md"
     ],
     "ignore": [
-      // Folders
       ".github",
       ".husky",
       ".vscode",
@@ -34,7 +33,6 @@
       "docs",
       "out",
       "node_modules",
-      // Files
       ".env",
       ".env.*",
       ".env.*.*",
