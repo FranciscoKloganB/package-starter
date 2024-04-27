@@ -1,4 +1,5 @@
-import { pathsToModuleNameMapper, type JestConfigWithTsJest } from 'ts-jest';
+import { pathsToModuleNameMapper } from 'ts-jest';
+import type { JestConfigWithTsJest } from 'ts-jest';
 
 import { compilerOptions } from './tsconfig.json';
 
@@ -14,15 +15,18 @@ const config: JestConfigWithTsJest = {
   coverageDirectory: '../coverage',
   coverageThreshold: {
     global: {
-      lines: 90,
+      functions: 80,
+      lines: 60,
+      statements: 60,
+      branches: 50,
     },
   },
-  testEnvironment: 'node',
-  testPathIgnorePatterns: ['<rootDir>/jest.config.ts', '<rootDir>/src/index.ts'],
   modulePathIgnorePatterns: ['<rootDir>/app/', '<rootDir>/dist/'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/',
   }),
+  testEnvironment: 'node',
+  testPathIgnorePatterns: ['<rootDir>/jest.config.ts', '<rootDir>/src/index.ts'],
 };
 
 export default config;

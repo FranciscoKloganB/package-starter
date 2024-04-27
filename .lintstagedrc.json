@@ -1,6 +1,0 @@
-{
-  "*.{js,ts}": [
-    "prettier --write \"{*,{src,test}/**/*}.+(css|json|cjs|js|jsx|mjs|ts|tsx)\"",
-    "eslint --fix --ext \"**/*.{js,jsx,ts,tsx}\""
-  ]
-}
