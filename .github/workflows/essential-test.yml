@@ -28,4 +28,4 @@ jobs:
         run: npm run tidy:ci
 
       - name: Test Unit
-        run: npm run test:ci
+        run: npm run test:ci:coverage
