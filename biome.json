@@ -11,37 +11,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "include": [
-      "src",
-      "test",
-      "*.js",
-      "*.cjs",
-      "*.mjs",
-      "*.ts",
-      "*.cts",
-      "*.mts",
-      "*.json",
-      "*.md"
-    ],
-    "ignore": [
-      ".github",
-      ".husky",
-      ".vscode",
-      "app",
-      "build",
-      "coverage",
-      "dist",
-      "docs",
-      "out",
-      "node_modules",
-      ".env",
-      ".env.*",
-      ".env.*.*",
-      ".envrc",
-      "package.json",
-      "package-lock.json",
-      "**/mockServiceWorker.js"
-    ]
+    "include": ["src", "test", "*.js", "*.cjs", "*.mjs", "*.ts", "*.cts", "*.mts", "*.json", "*.md"]
   },
   "formatter": {
     "enabled": true,
@@ -117,21 +87,7 @@
         "useGetterReturn": "error",
         "useValidTypeof": "error"
       }
-    },
-    "ignore": [
-      "**/.env.local",
-      "**/.env.template",
-      "**/.gitignore",
-      "**/.vscode/",
-      "**/build/",
-      "**/bun.lockb",
-      "**/package-lock.json",
-      "**/dist/",
-      "**/node_modules/",
-      "**/package.json",
-      "**/README.md",
-      "**/tsconfig.json"
-    ]
+    }
   },
   "javascript": {
     "formatter": {
