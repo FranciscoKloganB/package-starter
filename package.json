@@ -23,7 +23,7 @@
   "types": "./dist/index.d.ts",
   "files": ["dist"],
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.20.4"
   },
   "scripts": {
     "add-shebang": "./add-shebang.sh",
